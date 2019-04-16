@@ -7,7 +7,10 @@
       app
      class="hidden-sm-and-up">
       <v-list dense >
-        <v-list-tile v-for = "item in menuItems" :key ="item.title">
+        <v-list-tile v-for = "item in menuItems" 
+        :key ="item.title"
+        router
+        :to="item.link">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -19,15 +22,23 @@
     </v-navigation-drawer>
     <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="sideNav = !sideNav" class="hidden-sm-and-up"></v-toolbar-side-icon>
-      <v-toolbar-title>Kolkata DevMeet</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor:pointer"> DevMeet</router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat v-for = "item in menuItems" :key ="item.title">
+        <v-btn flat v-for = "item in menuItems"
+         :key ="item.title"
+         router
+         :to="item.link">
           <v-icon left>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
+    <v-content>
+      <router-view></router-view>
+    </v-content>
   </v-app>
 </template>
 
@@ -37,11 +48,11 @@
       return {
         sideNav : false,
         menuItems : [
-          { icon : 'dashboard', title : 'View Meetups'},
-          { icon : 'room', title : 'Organise Meetup'},
-          { icon : 'person', title : 'Profile'},
-          { icon : 'face', title : 'Sign up'},
-          { icon : 'lock_open', title : 'Sign in'}
+          { icon : 'dashboard', title : 'View Meetups', link : '/meeetups'},
+          { icon : 'room', title : 'Organise Meetup', link : '/meetups/new'},
+          { icon : 'person', title : 'Profile', link : '/profile'},
+          { icon : 'face', title : 'Sign up', link : '/signup'},
+          { icon : 'lock_open', title : 'Sign in', link : '/signin'}
         ]
       }
     } 
