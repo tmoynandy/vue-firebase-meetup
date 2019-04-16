@@ -1,4 +1,4 @@
-# vue-firebase-meetup
+# vue-firebase-meetup1
 
 ## Project setup
 ```
