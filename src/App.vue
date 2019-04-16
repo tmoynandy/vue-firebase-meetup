@@ -7,12 +7,12 @@
       app
      class="hidden-sm-and-up">
       <v-list dense >
-        <v-list-tile @click="">
+        <v-list-tile v-for = "item in menuItems" :key ="item.title">
           <v-list-tile-action>
-            <v-icon>dashboard</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>
-            <v-list-tile-title>View Meetups</v-list-tile-title>
+            <v-list-tile-title>{{ item.tile }}</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -22,9 +22,9 @@
       <v-toolbar-title>Kolkata Dev Meet</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
-        <v-btn flat>
-          <v-icon left>dashboard</v-icon>
-          View Meetups
+        <v-btn flat v-for = "item in menuItems" :key ="item.title">
+          <v-icon left>{{ item.icon }}</v-icon>
+          {{ item.title }}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -33,8 +33,17 @@
 
 <script>
   export default {
-    data: () => ({
-      sideNav: null
-    })
+    data(){
+      return {
+        sideNav : false,
+        menuItems : [
+          { icon : 'dashboard', title : 'View Meetups'},
+          { icon : 'room', title : 'Organise Meetup'},
+          { icon : 'person', title : 'Profile'},
+          { icon : 'face', title : 'Sign up'},
+          { icon : 'lock_open', title : 'Sign in'}
+        ]
+      }
+    } 
   }
 </script>
