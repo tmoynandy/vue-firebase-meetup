@@ -4,7 +4,7 @@
             <v-flex xs12>
                 <v-card>
                     <v-card-title>
-                        <h2>My Meetup</h2>
+                        <h2>meetup.title</h2>
                     </v-card-title>
                     <v-img
                         src="https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png"
@@ -34,3 +34,15 @@
         </v-layout>
     </v-container>
 </template>
+
+<script>
+export default {
+    props : ['id'],
+    computed :{
+        meetup (){
+            return this.$store.getters.loadedMeetup(this.$route.params.id);
+        }
+    }
+}
+</script>
+

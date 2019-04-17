@@ -7,19 +7,19 @@ export default new Vuex.Store({
     state: {
         loadedMeetups: [{
                 imageUrl: 'https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png',
-                id: '123456',
+                id: 'aaaa123456',
                 title: 'Meetup in kolkata',
                 date: '09-11-2019'
             },
             {
                 imageUrl: 'https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png',
-                id: '123457',
+                id: 'aaaaa123457',
                 title: 'Meetup in Bally',
                 date: '09-12-2019'
             },
             {
                 imageUrl: 'https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png',
-                id: '123458',
+                id: 'aaaaa123458',
                 title: 'Meetup in Howrah',
                 date: '09-11-2018'
             }
