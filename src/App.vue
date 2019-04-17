@@ -48,7 +48,7 @@
       return {
         sideNav : false,
         menuItems : [
-          { icon : 'dashboard', title : 'View Meetups', link : '/meeetups'},
+          { icon : 'dashboard', title : 'View Meetups', link : '/meetups'},
           { icon : 'room', title : 'Organise Meetup', link : '/meetups/new'},
           { icon : 'person', title : 'Profile', link : '/profile'},
           { icon : 'face', title : 'Sign up', link : '/signup'},
