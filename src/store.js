@@ -33,21 +33,21 @@ export default new Vuex.Store({
     mutations: {},
     actions: {},
     getters: {
-        abc(state) {
-            return state.abc;
-        },
+        // abc(state) {
+        //     return state.abc;
+        // },
         loadedMeetups(state) {
             return state.loadedMeetups;
         },
-        //   loadedMeetup (state) {
-        //         return (meetupId) => {
-        //             return state.loadedMeetups.find((meetup) => {
-        //                 return meetup.id === meetupId
-        //             })
-        //         }
-        //     },
-        //   featuredMeetups (state, getters) {
-        //       return getters.loadedMeetups.slice(0,5)
-        //   }
+          loadedMeetup (state) {
+                return (meetupId) => {
+                    return state.loadedMeetups.find((meetup) => {
+                        return meetup.id === meetupId
+                    })
+                }
+            },
+          featuredMeetups (state, getters) {
+              return getters.loadedMeetups.slice(0,5)
+          }
     }
 })

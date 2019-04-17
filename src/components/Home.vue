@@ -10,8 +10,8 @@
         </v-layout>
         <v-layout row wrap>
             <v-flex xs12>
-                <p>{{ abc }}</p>
-                <p>{{ abc2 }}</p>
+                <!--<p>{{ abc }}</p>
+                <p>{{ abc2 }}</p>-->
                 <v-carousel style="cursor:pointer">
                     <v-carousel-item
                     v-for="meetup in meetups"
@@ -37,14 +37,14 @@
 export default {
     computed:{
         meetups () {
-            return this.$store.getters.loadedMeetups;
+            return this.$store.getters.featuredMeetups;
         },
-        abc() {
-            return this.$store.getters.abc;
-        },
-        abc2() {
-            return this.$store.state.abc;
-        }
+        // abc() {
+        //     return this.$store.getters.abc;
+        // },
+        // abc2() {
+        //     return this.$store.state.abc;
+        // }
     },
     methods :{
         onLoadMeetup(id) {
