@@ -10,11 +10,12 @@
         </v-layout>
         <v-layout row wrap>
             <v-flex xs12>
-                <v-carousel>
+                <v-carousel style="cursor:pointer">
                     <v-carousel-item
                     v-for="meetup in meetups"
                     :key="meetup.id"
                     :src="meetup.imageUrl"
+                    @click="onLoadMeetup(meetup.id)"
                     >
                     <div class="title text-xs-center">
                         {{meetup.title}}
@@ -42,6 +43,11 @@ export default {
                 {imageUrl : 'https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png', 
                 id:'123456', title: 'Meetup in Howrah'},
             ]
+        }
+    },
+    methods :{
+        onLoadMeetup(id) {
+            this.$router.push('/meetups/1');//(meetups/+id)
         }
     }
 }
