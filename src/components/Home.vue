@@ -33,21 +33,14 @@
 </template>
 <script>
 export default {
-    data (){
-        return{
-            meetups : [
-                {imageUrl : 'https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png', 
-                id:'123456', title: 'Meetup in kolkata'},
-                {imageUrl : 'https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png', 
-                id:'123456', title: 'Meetup in Bally'},
-                {imageUrl : 'https://www.oberoihotels.com/-/media/Oberoi-Hotels/The-Oberoi-Grand-kolkata/overview/welcome/victoria-memorial-welcome.png', 
-                id:'123456', title: 'Meetup in Howrah'},
-            ]
+    computed:{
+        meetups () {
+            return this.$store.getters.loadedMeetups
         }
     },
     methods :{
         onLoadMeetup(id) {
-            this.$router.push('/meetups/1');//(meetups/+id)
+            this.$router.push('/meetups/1');
         }
     }
 }
