@@ -48,7 +48,7 @@ export default {
     },
     methods :{
         onLoadMeetup(id) {
-            this.$router.push('/meetups/1');
+            this.$router.push('/meetups/'+id);
         }
     }
 }
