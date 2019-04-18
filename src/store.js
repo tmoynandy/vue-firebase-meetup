@@ -41,8 +41,10 @@ export default new Vuex.Store({
         },
           loadedMeetup (state) {
                 return (meetupId) => {
+                    console.log(meetupId);
                     return state.loadedMeetups.find((meetup) => {
                         return meetup.id === meetupId
+                        console.log(meetup.id);
                     })
                 }
             },
