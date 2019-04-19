@@ -2,7 +2,7 @@
     <v-container>
         <v-layout row>
             <v-flex xs12 sm6 offset-sm3>
-                <h2>Create New Meetup</h2>
+                <h1>Create New Meetup</h1>
             </v-flex>
         </v-layout>
         <v-layout row>
@@ -30,10 +30,25 @@
                             </v-text-field>
                         </v-flex>
                     </v-layout>
+                    <v-layout row wrap class="mb-2">
+                        <v-flex xs12 sm6 offset-sm3>
+                            <h2>Choose a Date</h2>
+                            <v-date-picker v-model="date"></v-date-picker>
+                            <p>{{date}}</p>
+                        </v-flex>
+                    </v-layout>
+                    <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <h2>Choose a Time</h2>
+                            <v-time-picker v-model="time"></v-time-picker>
+                            <p>{{time}}</p>
+                        </v-flex>
+                    </v-layout>
                     <v-layout row>
                         <v-flex xs12 sm6 offset-sm3>
                             <v-btn :disabled="!formIsValid"
                             type="submit">Create Meetup</v-btn>
+                            {{submittableDateTime}}
                         </v-flex>
                     </v-layout>
                 </form>
@@ -48,12 +63,29 @@ export default {
     data () {
         return {
             title : '',
-            location : ''
+            location : '',
+            date : '',
+            time : new Date()
         }
     },
     computed : {
         formIsValid () {
             return this.title !== '' && this.location !== ''
+        },
+        submittableDateTime () {
+            const date = new Date(this.date)
+            if(typeof this.time === 'string'){
+                const hours = this.time.match(/^(\d+)/)[1]
+                const minutes = this.time.match(/^:(\d+)/)[1]
+                date.setHours(hours)
+                date.setMinutes(minutes)
+            }
+            else{
+                date.setHours(this.time.getHours())
+                date.setMinutes(this.time.getMinutes())
+            }
+            console.log(date)
+            return date
         }
     },
     methods :{
