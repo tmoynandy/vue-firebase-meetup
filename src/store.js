@@ -30,8 +30,22 @@ export default new Vuex.Store({
         },
         abc: 'this is abc'
     },
-    mutations: {},
-    actions: {},
+    mutations: {
+        createMeetup (state, payload){
+            state.loadedMeetups.push(payload)
+        }
+    },
+    actions: {
+        createMeetup ({commit}, payload){
+            const meetup = {
+                title : payload.title,
+                location : payload.location,
+                id : 'aaaa12345'
+            };
+            //reachout to firebase and store it and get back an id and store it etc etc
+            commit('createMeetup', meetup)
+        }
+    },
     getters: {
         // abc(state) {
         //     return state.abc;
@@ -41,10 +55,10 @@ export default new Vuex.Store({
         },
           loadedMeetup (state) {
                 return (meetupId) => {
-                    console.log(meetupId);
+                    //console.log(meetupId);
                     return state.loadedMeetups.find((meetup) => {
                         return meetup.id === meetupId
-                        console.log(meetup.id);
+                        //console.log(meetup.id);
                     })
                 }
             },
