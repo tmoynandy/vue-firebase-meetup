@@ -64,7 +64,7 @@ export default {
         return {
             title : '',
             location : '',
-            date : '',
+            date : new Date().toISOString().substr(0,10),
             time : new Date()
         }
     },
@@ -73,19 +73,27 @@ export default {
             return this.title !== '' && this.location !== ''
         },
         submittableDateTime () {
-            const date = new Date(this.date)
-            if(typeof this.time === 'string'){
-                const hours = this.time.match(/^(\d+)/)[1]
-                const minutes = this.time.match(/^:(\d+)/)[1]
-                date.setHours(hours)
-                date.setMinutes(minutes)
-            }
-            else{
-                date.setHours(this.time.getHours())
-                date.setMinutes(this.time.getMinutes())
-            }
-            console.log(date)
-            return date
+            const date = this.date
+            //const day = date.getDay()
+            const hours = this.time
+            //console.log("selected time : " +hours)
+            // date.setHours(this.time.getHours())
+            // date.setMinutes(this.time.getMinutes())
+            // if(typeof this.time === 'string'){
+            //     const hours = this.time.match(/^(\d+)/)[1]
+            //     const minutes = this.time.match(/^:(\d+)/)[1]
+            //     date.setHours(hours)
+            //     date.setMinutes(minutes)
+            // }
+            // else{
+            //     date.setHours(this.time.getHours())
+            //     date.setMinutes(this.time.getMinutes())
+            // }
+            //console.log("selected date : "+date)
+            //console.log("selected day : "+day)
+            const finalDate = "Date: "+date+" time: "+hours
+            console.log(finalDate)
+            return finalDate
         }
     },
     methods :{
@@ -95,8 +103,10 @@ export default {
             }
             const meetupData = {
                 title : this.title,
-                location : this.location
+                location : this.location,
+                date : this.submittableDateTime
             }
+            console.log("the date"+meetupData.date)
             this.$store.dispatch('createMeetup', meetupData)
             this.$router.push('/meetups')
             //console.log(meetupData)

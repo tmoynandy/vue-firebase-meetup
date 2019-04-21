@@ -11,7 +11,7 @@
                         height="40%">
                     </v-img>
                     <v-card-text>
-                        <div class="info--text">20th April 2019 - Kolkata</div>
+                        <div class="info--text">{{meetup.date}} - {{meetup.location}}</div>
                         <div>as;kdsakd lksadnsakdns aslkdnsakdlsna akdnsakldnsa slkdnsakdlsn
                             skds;ldmsd;smdsldsldmsnhsad ldksandskladn aslknsdklsnadksndsnd
                             dknsadknnsdksnd;ksnd;ksndas;dn kdnsadnslad klsndsal dkd sakdnsa

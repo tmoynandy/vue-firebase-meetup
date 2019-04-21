@@ -40,6 +40,7 @@ export default new Vuex.Store({
             const meetup = {
                 title : payload.title,
                 location : payload.location,
+                date : payload.date,
                 id : 'aaaa12345'
             };
             //reachout to firebase and store it and get back an id and store it etc etc
