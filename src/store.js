@@ -26,6 +26,8 @@ export default new Vuex.Store({
             }
         ],
         user: null,
+        loading : false,
+        error : null,
         abc: 'this is abc'
     },
     mutations: {
@@ -34,6 +36,15 @@ export default new Vuex.Store({
         },
         setUser (state, payload){
             state.user = payload
+        },
+        setLoading(state, payload){
+            state.loading = payload
+        },
+        setError (state, payload){
+            state.error = payload
+        },
+        clearError (state){
+            state.error = null
         }
     },
     actions: {
@@ -48,9 +59,12 @@ export default new Vuex.Store({
             commit('createMeetup', meetup)
         },
         signUserUp ({commit}, payload) {
+            commit('setLoading', true)
+            commit('clearError')
             firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
             .then(
                 user => {
+                    commit('setLoading', false)
                     const newUser ={
                         id : user.uid,
                         registeredMeetups : []
@@ -60,14 +74,19 @@ export default new Vuex.Store({
             )
             .catch(
                 error =>{
+                    commit('setLoading', false)
+                    commit('setError', error)
                     console.log(error)
                 }
             )
         },
         signUserIn({commit}, payload){
+            commit('setLoading', true)
+            commit('clearError')
             firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
             .then(
                 user => {
+                    commit('setLoading', false)
                     const newUser ={
                         id : user.uid,
                         registeredMeetups : []
@@ -77,9 +96,11 @@ export default new Vuex.Store({
             )
             .catch(
                 error =>{
+                    commit('setLoading', false)
+                    commit('setError', error)
                     console.log(error)
                 }
-            )
+            );
         }
     },
     getters: {
@@ -89,20 +110,26 @@ export default new Vuex.Store({
         loadedMeetups(state) {
             return state.loadedMeetups;
         },
-          loadedMeetup (state) {
-                return (meetupId) => {
-                    //console.log(meetupId);
-                    return state.loadedMeetups.find((meetup) => {
-                        return meetup.id === meetupId
-                        //console.log(meetup.id);
-                    })
-                }
-            },
-          featuredMeetups (state, getters) {
-              return getters.loadedMeetups.slice(0,5)
-          },
-          user (state) {
-              return state.user
-          }
+        loadedMeetup (state) {
+            return (meetupId) => {
+                //console.log(meetupId);
+                return state.loadedMeetups.find((meetup) => {
+                    return meetup.id === meetupId
+                    //console.log(meetup.id);
+                })
+            }
+        },
+        featuredMeetups (state, getters) {
+            return getters.loadedMeetups.slice(0,5)
+        },
+        user (state) {
+            return state.user
+        },
+        loading(state) {
+            return state.loading
+        },
+        error (state) {
+            return state.error
+        }
     }
 })
