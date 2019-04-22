@@ -91,7 +91,7 @@ export default {
             // }
             //console.log("selected date : "+date)
             //console.log("selected day : "+day)
-            const finalDate = "Date: "+date+" time: "+hours
+            const finalDate = ""+date+" | "+hours
             console.log(finalDate)
             return finalDate
         }
