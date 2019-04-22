@@ -25,10 +25,7 @@ export default new Vuex.Store({
                 date: '09-11-2018'
             }
         ],
-        user: {
-            id: 'absbadafa',
-            registeredMeetups: ['123456']
-        },
+        user: null,
         abc: 'this is abc'
     },
     mutations: {
@@ -86,6 +83,9 @@ export default new Vuex.Store({
             },
           featuredMeetups (state, getters) {
               return getters.loadedMeetups.slice(0,5)
+          },
+          user (state) {
+              return state.user
           }
     }
 })
