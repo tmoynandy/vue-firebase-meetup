@@ -21,6 +21,11 @@ new Vue({
       projectId: 'kolkata-devmeetup',
       storageBucket: 'kolkata-devmeetup.appspot.com'
     })
+    // firebase.auth().onAuthStateChanged((user)={
+    //   if(user){
+    //     this.$store.dispatch('autoSignin', user)
+    //   }
+    // })
     this.$store.dispatch('loadMeetups')
   }
 }).$mount('#app')

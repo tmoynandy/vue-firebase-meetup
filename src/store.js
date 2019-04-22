@@ -139,7 +139,10 @@ export default new Vuex.Store({
         },
         clearError ({commit}){
             commit ('clearError')
-        }
+        },
+        // autoSignin ({commit}, payload){
+        //     commit('setUser', {id:payload.uid, registeredMeetups:[]})
+        // }
     },
     getters: {
         // abc(state) {
