@@ -21,5 +21,6 @@ new Vue({
       projectId: 'kolkata-devmeetup',
       storageBucket: 'kolkata-devmeetup.appspot.com'
     })
+
   }
 }).$mount('#app')
