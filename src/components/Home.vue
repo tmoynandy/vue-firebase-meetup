@@ -1,14 +1,24 @@
 <template>
     <v-container>
-        <v-layout row wrap class="mb-2">
+        <v-layout row wrap class="mb-2" v-if="!loading">
             <v-flex xs12 sm6 class="text-xs-center text-sm-right">
                 <v-btn large router to="/meetups">Explore Meetups</v-btn>
             </v-flex>
-            <v-flex xs12 sm6 class="text-xs-center text-sm-left">
+            <v-flex xs12 sm6 class="text-xs-center text-sm-left" v-if="!loading">
                 <v-btn large router to="/meetups/new">Organise Meetups</v-btn>
             </v-flex>
         </v-layout>
-        <v-layout row wrap>
+        <v-layout>
+            <v-flex xs12 class="text-xs-center">
+                <v-progress-circular
+                    indeterminate
+                    color="primary"
+                :width="7"
+                :size="70"
+                v-if="loading"></v-progress-circular>
+            </v-flex>
+        </v-layout>
+        <v-layout row wrap v-if="!loading">
             <v-flex xs12>
                 <!--<p>{{ abc }}</p>
                 <p>{{ abc2 }}</p>-->
@@ -45,6 +55,9 @@ export default {
         // abc2() {
         //     return this.$store.state.abc;
         // }
+        loading () {
+            return this.$store.getters.loading
+        }
     },
     methods :{
         onLoadMeetup(id) {
