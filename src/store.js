@@ -62,7 +62,8 @@ export default new Vuex.Store({
                         id : key,
                         title : obj[key].title,
                         date : obj[key].date,
-                        location : obj[key].location 
+                        location : obj[key].location,
+                        creatorId : obj[key].creatorId
                     })
                 }
                 commit('setLoadedMeetups', meetups)
@@ -73,12 +74,14 @@ export default new Vuex.Store({
                 commit('setLoading', true)
             })
         },
-        createMeetup ({commit}, payload){
+        createMeetup ({commit, getters}, payload){
             const meetup = {
                 title : payload.title,
                 location : payload.location,
-                date : payload.date
+                date : payload.date,
+                creatorId : getters.user.id
             }
+            console.log(meetup.creatorId)
             //reachout to firebase and store it and get back an id and store it etc etc
             firebase.database().ref('meetups').push(meetup)
             .then((data) =>{
@@ -101,7 +104,7 @@ export default new Vuex.Store({
                 user => {
                     commit('setLoading', false)
                     const newUser ={
-                        id : user.uid,
+                        id : user.user.email,
                         registeredMeetups : []
                     }
                     commit('setUser', newUser)
@@ -123,9 +126,10 @@ export default new Vuex.Store({
                 user => {
                     commit('setLoading', false)
                     const newUser ={
-                        id : user.uid,
+                        id : user.user.email,
                         registeredMeetups : []
                     }
+                    console.log(user.user.email)
                     commit('setUser', newUser)
                 }
             )
