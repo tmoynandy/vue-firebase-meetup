@@ -30,6 +30,12 @@
                             </v-text-field>
                         </v-flex>
                     </v-layout>
+                     <v-layout row>
+                        <v-flex xs12 sm6 offset-sm3>
+                            <v-btn raised class="primary" @click="onPickFile">Upload Image</v-btn>
+                            <input type="file" style="display:none" ref="fileInput" accept="image/*">
+                        </v-flex>
+                    </v-layout>
                     <v-layout row wrap class="mb-2">
                         <v-flex xs12 sm6 offset-sm3>
                             <h2>Choose a Date</h2>
@@ -105,12 +111,15 @@ export default {
                 title : this.title,
                 location : this.location,
                 date : this.submittableDateTime
-            }
+            }  
             console.log("the date"+meetupData.date)
             this.$store.dispatch('createMeetup', meetupData)
             this.$router.push('/meetups')
             //console.log(meetupData)
              //calls the createMeetup in action
+        },
+        onPickFile() {
+            this.$refs.fileInput.click();
         }
     }
 }
